@@ -15,10 +15,10 @@ function App() {
               <Home />
             </Route>
             <Route path='/create'>
-              <Create/>
+              <Create />
             </Route>
             <Route path='/blogs/:id'>
-              <BlogDetails/>
+              <BlogDetails />
             </Route>
           </Switch>
         </div>
