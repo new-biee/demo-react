@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 /* base styles */
-* {
+/* * {
   margin: 0;
   font-family: "Quicksand";
   color: #333;
-}
-.navbar {
+} */
+/* .navbar {
   padding: 20px;
   display: flex;
   align-items: center;
@@ -32,10 +32,10 @@
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
-}
+} */
 
 /* blog perviews / list */
-.blog-preview {
+/* .blog-preview {
   padding: 10px 16px;
   margin: 20px 0;
   border-bottom: 1px solid #fafafa;
@@ -50,10 +50,10 @@
 }
 .blog-preview a {
   text-decoration: none;
-}
+} */
 
 /* blog details page */
-.blog-details h2 {
+/* .blog-details h2 {
   font-size: 20px;
   color: #f1356d;
   margin-bottom: 10px;
@@ -68,10 +68,10 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
-}
+} */
 
 /* create new blog form */
-.create {
+/* .create {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
@@ -100,4 +100,4 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
-}
+} */
