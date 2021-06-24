@@ -1,10 +1,11 @@
 // @ts-nocheck
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import 'antd/dist/antd.css';
 import { Form, Typography, Row, Col, Input, Button, DatePicker, version, Select } from 'antd';
+import useFetch from './useFetch';
 
 const EditBlog = (props) => {
-
     const { Option } = Select;
     const { Title } = Typography;
     const blog = props.blog;
@@ -12,6 +13,8 @@ const EditBlog = (props) => {
     const [body, setBody] = useState(blog.body);
     const [author, setAuthor] = useState(blog.author);
     const { TextArea } = Input;
+    const [isPending, setIsPending] = useState(false);
+    const history = useHistory();
 
     const layout = {
         labelCol: {
@@ -28,13 +31,29 @@ const EditBlog = (props) => {
         },
     };
 
+    const handleSubmit = (e) => {
+        setIsPending(true);
+        blog.title = title;
+        blog.body = body;
+        blog.author = author;
+        fetch('http://localhost:8000/blogs/' + blog.id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(blog)
+        }).then(() => {
+            console.log(blog.author);
+            setIsPending(false);
+            history.push('/');
+        })
+    };
+
     return (
         <div className="edit">
             <Row>
                 <Col span={8}></Col>
                 <Col span={8}>
                     <Title level={3}>Edit blog: {blog.title}</Title>
-                    <Form onFinish={author} {...layout}>
+                    <Form onFinish={handleSubmit} {...layout} initialValues={{ title: blog.title, body: blog.body, author: blog.author, id: blog.id }}>
                         <Form.Item
                             label="Blog title: "
                             name="title"
@@ -46,29 +65,21 @@ const EditBlog = (props) => {
                             ]}
                             onChange={(e) => setTitle(e.target.value)}>
                             <Input
-                                defaultValue={title} />
+                            />
                         </Form.Item>
 
                         <Form.Item
                             label="Blog body: "
                             name="body"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input body'
-                                }
-                            ]}
                             onChange={(e) => setBody(e.target.value)}>
-                            <TextArea defaultValue={body} />
+                            <TextArea />
                         </Form.Item>
 
                         <Form.Item
                             label="Blog author"
                             name="author"
-                            required={(e) => setAuthor(e.target.value)}
-                            rules={[{
-                                required: true
-                            }]}>
+                            onChange={(e) => setAuthor(e.target.value)}
+                        >
                             <Select>
                                 <Option value="mario">mario</Option>
                                 <Option value="yoshi">yoshi</Option>

@@ -12,7 +12,6 @@ const Create = () => {
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
   const blog = { title, body, author };
-  const { TextArea } = Input;
 
   const handleSubmit = (e) => {
 
@@ -86,9 +85,7 @@ const Create = () => {
               label="Blog author:"
               name="author"
               onChange={(e) => setAuthor(e.target.value)}
-              rules={[{
-                required: true
-              }]}>
+            >
               <Select>
                 <Option value="mario">mario</Option>
                 <Option value="yoshi">yoshi</Option>

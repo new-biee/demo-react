@@ -7,6 +7,7 @@ const BlogDetails = () => {
     const { id } = useParams();
     const [isEditing, setIsEditing] = useState(false);
 
+    
     const {
         data: blog,
         error,
@@ -23,7 +24,7 @@ const BlogDetails = () => {
     };
 
     const handleEdit = (e) => {
-        setIsEditing(true);
+        setIsEditing(true)
     }
 
     const renderDetails = () => {
@@ -36,7 +37,7 @@ const BlogDetails = () => {
                         <h2>{blog.title}</h2>
                         <p>Write by {blog.author}</p>
                         <div>{blog.body}</div>
-                        <button id="btnEdit" onClick={handleEdit}>Edit</button>
+                        <button onClick={handleEdit}>Edit</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <button onClick={handleClick}>Delete</button>
                     </article>
