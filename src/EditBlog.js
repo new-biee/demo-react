@@ -24,6 +24,7 @@ const EditBlog = (props) => {
             span: 12,
         },
     };
+
     const tailLayout = {
         wrapperCol: {
             offset: 8,
@@ -41,7 +42,7 @@ const EditBlog = (props) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog)
         }).then(() => {
-            console.log(blog.author);
+            console.log(blog);
             setIsPending(false);
             history.push('/');
         })
@@ -71,16 +72,24 @@ const EditBlog = (props) => {
                         <Form.Item
                             label="Blog body: "
                             name="body"
-                            onChange={(e) => setBody(e.target.value)}>
+                            onChange={(e) => setBody(e.target.value)}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Plesase input body!'
+                                }
+                            ]}>
                             <TextArea />
                         </Form.Item>
 
                         <Form.Item
                             label="Blog author"
                             name="author"
-                            onChange={(e) => setAuthor(e.target.value)}
                         >
-                            <Select>
+                            <Select
+                                value={author}
+                                onChange={value => setAuthor(value)}>
+
                                 <Option value="mario">mario</Option>
                                 <Option value="yoshi">yoshi</Option>
                             </Select>
